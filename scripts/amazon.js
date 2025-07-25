@@ -1,4 +1,8 @@
+import { cart, addToCart } from "/scripts/cart.js";
+import { products } from "../data/products.js";
+
 let productsHTML = "";
+
 products.forEach((product) => {
   productsHTML += `<div class="product-container">
           <div class="product-image-container">
@@ -52,45 +56,28 @@ products.forEach((product) => {
         </div>`;
 });
 
+function updateCartQunatity(productId) {
+  const addedToCart = document.querySelector(`.added-to-cart-${productId}`);
+  addedToCart.classList.add("added-to-cart-appear");
+  setTimeout(() => {
+    addedToCart.classList.remove("added-to-cart-appear");
+  }, 1500);
+
+  let cartQuantity = 0;
+  cart.forEach((cartItem) => {
+    cartQuantity += cartItem.quantity;
+  });
+  document.querySelector(".cart-quantity").innerHTML = cartQuantity;
+  console.log(cart);
+}
+
 document.querySelector(".products-grid").innerHTML = productsHTML;
 
 document.querySelectorAll(".add-to-cart-button").forEach((button) => {
   button.addEventListener("click", () => {
     const productId = button.dataset.productId;
 
-    const addedToCart=document.querySelector(`.added-to-cart-${productId}`);
-    addedToCart.classList.add("added-to-cart-appear");
-    setTimeout(()=>{
-      addedToCart.classList.remove("added-to-cart-appear");
-
-    },1500)
-
-    let matchingItem;
-    cart.forEach((item) => {
-      if (productId === item.productId) {
-        matchingItem = item;
-      }
-    });
-    
-    const quantitySelector = document.querySelector(
-      `.quantity-selector-${productId}`
-    );
-    const quantity = Number(quantitySelector.value);
-
-    if (matchingItem) {
-      matchingItem.quantity += quantity;
-    } else {
-      cart.push({
-        productId: productId,
-        quantity: quantity,
-      });
-    }
-
-    let cartQuantity = 0;
-    cart.forEach((item) => {
-      cartQuantity += item.quantity;
-    });
-    document.querySelector(".cart-quantity").innerHTML = cartQuantity;
-    console.log(cart);
+    addToCart(productId);
+    updateCartQunatity(productId);
   });
 });
