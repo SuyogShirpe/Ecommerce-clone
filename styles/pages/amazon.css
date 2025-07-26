@@ -144,7 +144,7 @@
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
 }
-.added-to-cart-appear{
+.added-to-cart-visible{
   opacity: 1;
 
 }
