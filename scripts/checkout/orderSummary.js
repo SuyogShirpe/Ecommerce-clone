@@ -116,9 +116,10 @@ export function getOrderSummary() {
       const productId = link.dataset.productId;
       removeFromCart(productId);
 
-      document.querySelector(`.cart-item-container-${productId}`).remove();
+      
     updateCartQuantity();
     getPaymentSummary();
+    getOrderSummary();
     });
   });
 
