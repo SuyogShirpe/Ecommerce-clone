@@ -42,6 +42,8 @@ products.forEach((product) => {
             </select>
           </div>
           ${product.getSizeChatrt()}
+          ${product.getInstructionsLink()}
+          ${product.getWarrantyLink()}
 
           <div class="product-spacer"></div>
 

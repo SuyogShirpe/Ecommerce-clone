@@ -164,3 +164,29 @@ a{
   text-decoration: none;
 
 }
+
+footer {
+    background-color: #000000;           
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+    border-top: 2px solid #444;
+    color: white;
+  }
+
+  footer .disclaimer {
+    margin: 0 auto;
+    max-width: 800px;
+    line-height: 1.6;
+  }
+  footer  .warning {
+    font-weight: bold;
+    color: red;
+  }
+
+  @media (max-width: 600px) {
+    footer .disclaimer {
+      font-size: 12px;
+      padding: 0 10px;
+    }
+  }
