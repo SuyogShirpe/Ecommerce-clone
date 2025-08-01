@@ -1,5 +1,10 @@
-import { getOrderSummary} from "./checkout/orderSummary.js";
+import { getOrderSummary } from "./checkout/orderSummary.js";
 import { getPaymentSummary } from "./checkout/paymentSummary.js";
 
-getOrderSummary();
-getPaymentSummary();
+new Promise((resolve) => {
+  
+  getOrderSummary();
+  getPaymentSummary();
+  resolve();
+
+})
