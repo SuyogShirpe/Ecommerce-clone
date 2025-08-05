@@ -90,3 +90,8 @@ export function addToCartFromOrders(productId) {
   }
   saveToStorage();
 }
+
+export function clearCart(){
+  cart = [];
+  saveToStorage();
+}

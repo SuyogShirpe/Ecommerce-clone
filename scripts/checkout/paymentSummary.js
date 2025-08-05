@@ -1,8 +1,9 @@
-import { cart } from "../cart.js";
+import { cart , clearCart } from "../cart.js";
 import { getProduct } from "../../data/products.js";
 import { getDeliveryOption } from "../../data/deliveryOptions.js";
 import { formatCurrency } from "../utils/money.js";
 import { addOrder } from "../../data/orders.js";
+import { updateCartQuantity } from "../home.js";
 
 export function getPaymentSummary() {
   let productPriceCents = 0;
@@ -66,7 +67,7 @@ export function getPaymentSummary() {
             Place your order
           </button>`;
 
-  document.querySelector(".payment-summary").innerHTML = paymentSummaryHTML;
+  document.querySelector(".payment-summary").innerHTML = paymentSummaryHTML; 
 
   document.querySelector(".place-order-button").addEventListener("click", async () => {
       const response = await fetch("https://supersimplebackend.dev/orders", {
@@ -84,4 +85,9 @@ export function getPaymentSummary() {
 
       window.location.href = "orders.html";
     });
+
+    document.querySelector('.place-order-button').addEventListener('click' , () => {
+    clearCart();
+    updateCartQuantity();
+    })
 }
