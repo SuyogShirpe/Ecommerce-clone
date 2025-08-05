@@ -60,7 +60,7 @@ products.forEach((product) => {
         </div>`;
 });
 
-function updateCartQuantity(productId ) {
+export function updateCartQuantity(productId ) {
   if (productId) {
     const addedToCart = document.querySelector(`.added-to-cart-${productId}`);
     if (addedToCart) {
@@ -82,7 +82,10 @@ function updateCartQuantity(productId ) {
   }
 }
 
-document.querySelector(".products-grid").innerHTML = productsHTML;
+const productsGrid = document.querySelector(".products-grid");
+if (productsGrid) {
+  productsGrid.innerHTML = productsHTML;
+}
 
 updateCartQuantity();
 

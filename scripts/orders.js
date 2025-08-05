@@ -2,7 +2,8 @@ import {orders} from '../data/orders.js';
 import {getProduct} from "../data/products.js";
 import {formatCurrency} from "./utils/money.js";
 import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
-
+import { cart, addToCartFromOrders } from "./cart.js";
+import {updateCartQuantity} from "./home.js";
 
 
 let ordersHTML ='';
@@ -37,12 +38,15 @@ orders.forEach((order) => {
     </div>
 `;
 
-
 });
 
 
 function productListHTML(order) {
     let productListHTML = '';
+
+    if(!order.products || order.products.length === 0) {
+      return `<div class="no-products">No products in this order.</div>`;
+    }
 
     order.products.forEach((productDetails) => {
 
@@ -63,7 +67,7 @@ function productListHTML(order) {
               <div class="product-quantity">
                 Quantity : ${productDetails.quantity}
               </div>
-              <button class="buy-again-button button-primary">
+              <button class="buy-again-button button-primary" data-product-id="${product.id}">
                 <img class="buy-again-icon" src="images/icons/buy-again.png">
                 <span class="buy-again-message">Buy it again</span>
               </button>
@@ -81,7 +85,26 @@ function productListHTML(order) {
     return productListHTML;
 }
 
-document.querySelector('.orders-grid').innerHTML =ordersHTML;
+document.querySelector('.orders-grid').innerHTML = ordersHTML;
+
+let cartQuantity = 0;
+  cart.forEach((cartItem) => {
+    cartQuantity += cartItem.quantity;
+  });
+
+  const cartQuantityElement = document.querySelector(".cart-quantity");
+  if (cartQuantityElement) {
+    cartQuantityElement.innerHTML = cartQuantity;
+  }
+
+document.querySelectorAll('.buy-again-button').forEach((button) => {
+  button.addEventListener('click', () =>{
+    const productId = button.dataset.productId;
+
+    addToCartFromOrders(productId);
+    updateCartQuantity(productId);
+  })
+})
 
 
 
