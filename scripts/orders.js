@@ -103,8 +103,19 @@ document.querySelectorAll('.buy-again-button').forEach((button) => {
 
     addToCartFromOrders(productId);
     updateCartQuantity(productId);
+
+    button.innerHTML = `<img class="buy-again-icon" src="images/icons/checkmark.png">
+          <span class="buy-again-message">Added</span>`;
+      setTimeout(() => {
+        button.innerHTML = `
+          <img class="buy-again-icon" src="images/icons/buy-again.png">
+          <span class="buy-again-message">Buy it again</span>
+        `;
+      }, 1500);
   })
 })
+
+console.log(orders)
 
 
 
