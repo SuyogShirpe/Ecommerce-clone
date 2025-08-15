@@ -13,23 +13,23 @@ https://suyogshirpe.github.io/Ecommerce-clone/
 ```
 amazon-clone/
 │
-├── index.html               # Homepage
-├── checkout.html            # Checkout page
-├── orders.html              # Orders listing page
-├── tracking.html            # Order tracking page
+├── index.html              
+├── checkout.html   
+├── orders.html      
+├── tracking.html      
 │
 ├── backend/
-│   └── products.json        # Product database
+│   └── products.json        
 │
 ├── data/
-│   ├── deliveryOptions.js   # Delivery options data
-│   ├── orders.js            # Order data management
-│   └── products.js          # Product fetching & rendering
+│   ├── deliveryOptions.js   
+│   ├── orders.js           
+│   └── products.js      
 │
-├── images/                  # All images and icons
-│   └── icons/               # UI icons
+├── images/               
+│   └── icons/            
 │
-└── styles/                  # CSS files (if available)
+└── styles/                
 ```
 
 ---
