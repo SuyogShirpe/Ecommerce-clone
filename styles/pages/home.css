@@ -121,8 +121,9 @@
   font-weight: 700;
   margin-bottom: 10px;
 }
-
-.product-quantity-container {
+.product-quantity-size-container{
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 17px;
 }
 

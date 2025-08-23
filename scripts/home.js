@@ -26,7 +26,7 @@ products.forEach((product) => {
           <div class="product-price">
             ${product.getPrice()}
           </div>
-
+        <div class="product-quantity-size-container">
           <div class="product-quantity-container">
             <select class="quantity-selector-${product.id}">
               <option selected value="1">1</option>
@@ -41,6 +41,9 @@ products.forEach((product) => {
               <option value="10">10</option>
             </select>
           </div>
+          ${product.getSizeSelectionOption()}
+        </div>
+
           ${product.getSizeChatrt()}
           ${product.getInstructionsLink()}
           ${product.getWarrantyLink()}

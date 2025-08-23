@@ -56,6 +56,11 @@
   flex-shrink: 1;
 }
 
+.product-quantity-size{
+  display: flex;
+  gap: 20px;
+}
+
 @media (max-width: 575px) {
   .order-header {
     flex-direction: column;
@@ -131,7 +136,7 @@
   margin-bottom: 3px;
 }
 
-.product-quantity {
+.product-quantity-size {
   margin-bottom: 8px;
 }
 
@@ -196,7 +201,7 @@
     margin-bottom: 10px;
   }
 
-  .product-quantity {
+  .product-quantity-size {
     margin-bottom: 15px;
   }
 

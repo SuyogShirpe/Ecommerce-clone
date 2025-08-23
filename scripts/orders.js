@@ -41,7 +41,7 @@ orders.forEach((order) => {
 });
 
 
-function productListHTML(order) {
+export function productListHTML(order) {
     let productListHTML = '';
 
     if(!order.products || order.products.length === 0) {
@@ -64,10 +64,16 @@ function productListHTML(order) {
               <div class="product-delivery-date">
                 Arriving on : ${dayjs(productDetails.estimatedDeliveryTime).format('MMMM D')}
               </div>
-              <div class="product-quantity">
-                Quantity : ${productDetails.quantity}
+              <div class="product-quantity-size">
+                <span>
+                  Quantity : ${productDetails.quantity}
+                </span>
+                <span>${productDetails.size && productDetails.size !== 'default' ? `
+                  Size : ${productDetails.size}` : ''}
+                </span>
               </div>
-              <button class="buy-again-button button-primary" data-product-id="${product.id}">
+              <button class="buy-again-button button-primary" data-product-id="${product.id}"
+              data-size="${productDetails.size || 'default'}">
                 <img class="buy-again-icon" src="images/icons/buy-again.png">
                 <span class="buy-again-message">Buy it again</span>
               </button>
@@ -100,8 +106,9 @@ let cartQuantity = 0;
 document.querySelectorAll('.buy-again-button').forEach((button) => {
   button.addEventListener('click', () =>{
     const productId = button.dataset.productId;
+    const size = button.dataset.size || 'default';
 
-    addToCartFromOrders(productId);
+    addToCartFromOrders(productId , size);
     updateCartQuantity(productId);
 
     button.innerHTML = `<img class="buy-again-icon" src="images/icons/checkmark.png">

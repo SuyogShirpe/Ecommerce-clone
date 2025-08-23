@@ -33,6 +33,9 @@ class Product {
   getPrice() {
     return `$${formatCurrency(this.priceCents)}`;
   }
+  getSizeSelectionOption(){
+    return '';
+  }
   getSizeChatrt() {
     return '';
   }
@@ -51,6 +54,18 @@ class Clothing extends Product {
   constructor(productDetails){
     super(productDetails);
     this.sizeChartLink = productDetails.sizeChartLink;
+  }
+
+  getSizeSelectionOption(){
+    return `<div class="product-size-container">
+            <select class="size-selector-${this.id}">
+              <option selected value="XS">XS</option>
+              <option value="S">S</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
+              <option value="XL">XL</option>
+            </select>
+          </div>`;
   }
 
   getSizeChatrt(){

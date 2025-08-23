@@ -39,7 +39,12 @@ async function loadPage() {
         </div>
 
         <div class="product-info">
-          Quantity: ${productDetails.quantity}
+          <span>
+            Quantity : ${productDetails.quantity}
+          </span>
+          <span>${productDetails.size && productDetails.size !== 'default' ? `
+            Size : ${productDetails.size}` : ''}
+          </span>
         </div>
 
         <img class="product-image" src="${product.image}">

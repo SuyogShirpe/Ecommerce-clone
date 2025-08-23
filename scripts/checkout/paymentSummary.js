@@ -6,6 +6,15 @@ import { addOrder } from "../../data/orders.js";
 import { updateCartQuantity } from "../home.js";
 
 export function getPaymentSummary() {
+
+if (cart.length === 0) {
+    document.querySelector(".payment-summary").innerHTML = `
+      <div class="empty-payment-summary">
+      No payment summary available.
+      </div>`;
+    return;
+  }
+
   let productPriceCents = 0;
   let shippingPriceCents = 0;
   cart.forEach((cartItem) => {
@@ -70,24 +79,34 @@ export function getPaymentSummary() {
   document.querySelector(".payment-summary").innerHTML = paymentSummaryHTML; 
 
   document.querySelector(".place-order-button").addEventListener("click", async () => {
+
+    const cartWithSize = cart.map(cartItem => ({
+    ...cartItem,
+    variation: cartItem.size || "default"
+  }));
       const response = await fetch("https://supersimplebackend.dev/orders", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          cart: cart,
+          cart: cartWithSize,
         }),
       });
 
       const order = await response.json();
+      order.products.forEach((orderProduct) =>{
+        const matchingCartItem = cart.find(cartItem => cartItem.productId === orderProduct.productId)
+        if(matchingCartItem){
+          orderProduct.size = matchingCartItem.size;
+        }
+      })
       addOrder(order);
 
       window.location.href = "orders.html";
-    });
 
-    document.querySelector('.place-order-button').addEventListener('click' , () => {
     clearCart();
     updateCartQuantity();
-    })
+
+    });
 }
